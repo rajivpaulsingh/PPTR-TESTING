@@ -10,15 +10,15 @@ describe('Example Test', () => {
 
     before(async function() {
         browser = await puppeteer.launch({
-            headless: false,
-            slowMo: 0,
-            timeout: 10000
+            headless: config.isHeadless,
+            slowMo: config.sloMo,
+            timeout: config.launchTimeout
         })
         page = await browser.newPage()
-        await page.setDefaultTimeout(10000);
+        await page.setDefaultTimeout(config.waitingTimeout);
         await page.setViewport({
-            width: 1200,
-            height: 800
+            width: config.viewportWidth,
+            height: config.viewportHeight
         })
     })
 
