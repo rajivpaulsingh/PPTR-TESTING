@@ -6,6 +6,7 @@ const click = require('../lib/helpers').click
 const typeText = require('../lib/helpers').typeText
 const loadUrl = require('../lib/helpers').loadUrl
 const waitForText = require('../lib/helpers').waitForText
+const pressKey = require('../lib/helpers').pressKey
 
 describe('Example Test', () => {
 
@@ -56,5 +57,12 @@ describe('Example Test', () => {
         await typeText(page, 'password', '#user_password')
         await click(page, '.btn-primary')
         await page.waitForSelector('.nav-tabs')
+    })
+
+    it('Press method', async () => {
+        await loadUrl(page, config.baseUrl)
+        await typeText(page, 'Loans', '#searchTerm')
+        await pressKey(page, 'Enter')
+        await waitForText(page, 'body', 'The following pages were found for the query')
     })
 })
