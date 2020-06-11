@@ -10,6 +10,7 @@ const pressKey = require('../lib/helpers').pressKey
 const shouldExist = require('../lib/helpers').shouldExist
 const generateID = require('../lib/utils').generateID
 const generateEmail = require('../lib/utils').generateEmail
+const generateNumbers = require('../lib/utils').generateNumbers
 
 describe('Example Test', () => {
 
@@ -72,6 +73,9 @@ describe('Example Test', () => {
         await pressKey(page, 'Enter')
         await waitForText(page, 'body', 'No results were found for the query')
         await typeText(page, generateEmail(), '#searchTerm')
+        await pressKey(page, 'Enter')
+        await waitForText(page, 'body', 'No results were found for the query')
+        await typeText(page, generateNumbers(), '#searchTerm')
         await pressKey(page, 'Enter')
         await waitForText(page, 'body', 'No results were found for the query')
     })
