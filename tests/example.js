@@ -8,6 +8,7 @@ const loadUrl = require('../lib/helpers').loadUrl
 const waitForText = require('../lib/helpers').waitForText
 const pressKey = require('../lib/helpers').pressKey
 const shouldExist = require('../lib/helpers').shouldExist
+const generateID = require('../lib/utils').generateID
 
 describe('Example Test', () => {
 
@@ -66,5 +67,8 @@ describe('Example Test', () => {
         await typeText(page, 'Loans', '#searchTerm')
         await pressKey(page, 'Enter')
         await waitForText(page, 'body', 'The following pages were found for the query')
+        await typeText(page, generateID(15), '#searchTerm')
+        await pressKey(page, 'Enter')
+        await waitForText(page, 'body', 'No results were found for the query')
     })
 })
