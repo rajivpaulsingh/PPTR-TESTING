@@ -1,7 +1,8 @@
 const puppeteer = require('puppeteer')
 const expect = require('chai').expect
 
-const config = require('../lib/config');
+const config = require('../lib/config')
+const click = require('../lib/helpers').click
 
 describe('Example Test', () => {
 
@@ -28,12 +29,18 @@ describe('Example Test', () => {
 
     it('My first test step', async () => {
         await page.goto(config.baseUrl)
-        await page.waitForSelector('#nav-search')
+        await page.waitForSelector('#nav')
 
         const url = await page.url()
         const title = await page.title()
 
-        expect(url).to.contain('dev')
-        expect(title).to.contains('Community')
+        expect(url).to.contain('zero')
+        expect(title).to.contains('Personal')
+    })
+
+    it('Click method', async () => {
+        await page.goto(config.baseUrl)
+        await click(page, '#signin_button')
+        await page.waitForSelector('#user_login')
     })
 })
