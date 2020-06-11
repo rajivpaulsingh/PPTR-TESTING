@@ -7,6 +7,7 @@ const typeText = require('../lib/helpers').typeText
 const loadUrl = require('../lib/helpers').loadUrl
 const waitForText = require('../lib/helpers').waitForText
 const pressKey = require('../lib/helpers').pressKey
+const shouldExist = require('../lib/helpers').shouldExist
 
 describe('Example Test', () => {
 
@@ -33,7 +34,7 @@ describe('Example Test', () => {
 
     it('My first test step', async () => {
         await loadUrl(page, config.baseUrl)
-        await page.waitForSelector('#nav')
+        await shouldExist(page, '#nav')
 
         await waitForText(page, 'body', 'Online Banking')
 
@@ -47,7 +48,7 @@ describe('Example Test', () => {
     it('Click method', async () => {
         await loadUrl(page, config.baseUrl)
         await click(page, '#signin_button')
-        await page.waitForSelector('#user_login')
+        await shouldExist(page, '#user_login')
     })
 
     it('Type method', async () => {
@@ -56,7 +57,8 @@ describe('Example Test', () => {
         await typeText(page, 'username', '#user_login')
         await typeText(page, 'password', '#user_password')
         await click(page, '.btn-primary')
-        await page.waitForSelector('.nav-tabs')
+        await shouldExist(page, '.nav-tabs')
+
     })
 
     it('Press method', async () => {
