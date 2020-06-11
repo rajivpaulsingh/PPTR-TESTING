@@ -5,6 +5,7 @@ const config = require('../lib/config')
 const click = require('../lib/helpers').click
 const typeText = require('../lib/helpers').typeText
 const loadUrl = require('../lib/helpers').loadUrl
+const waitForText = require('../lib/helpers').waitForText
 
 describe('Example Test', () => {
 
@@ -32,6 +33,8 @@ describe('Example Test', () => {
     it('My first test step', async () => {
         await loadUrl(page, config.baseUrl)
         await page.waitForSelector('#nav')
+
+        await waitForText(page, 'body', 'Online Banking')
 
         const url = await page.url()
         const title = await page.title()
